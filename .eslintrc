@@ -1,0 +1,35 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+
+  "settings": {
+    "ecmascript": 7
+  },
+
+  "rules": {
+    "new-cap": [2, {
+      "capIsNewExceptions": [
+        "WidthProvider",
+        "Seq",
+        "OrderedMap",
+        "List",
+        "Map",
+        "Seq",
+        "Set",
+        "Range",
+        "Immutable.Map",
+        "Immutable.Set",
+        "Immutable.List"
+      ]
+    }],
+
+    "import/no-unresolved": [0],
+    "no-restricted-syntax": [0],
+  },
+
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  }
+}

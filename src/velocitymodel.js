@@ -43,6 +43,7 @@ export default class VelocityModel {
         this.pos = this.max;
       }
     }
+    return this.pos;
   }
 
   inside(pos) {

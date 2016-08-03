@@ -52,7 +52,13 @@ export default class VelocityModel {
 
   setTarget(target) {
     if (this.circular) {
-      const error = target - this.pos;
+      let t = target;
+      if (target > this.max) {
+        t = this.min + ((target - this.max) % this.interval);
+      } else if (target < this.min) {
+        t = this.max - ((this.min - target) % this.interval);
+      }
+      const error = t - this.pos;
       const absError = Math.abs(error);
       if (absError < this.interval - absError) {
         this.PID.setTarget(this.pos + error);

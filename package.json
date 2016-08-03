@@ -1,6 +1,6 @@
 {
   "name": "velocitymodel",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "PD controlled velocity model with animation extension",
   "main": "lib/index.js",
   "scripts": {

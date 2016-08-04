@@ -4,3 +4,6 @@ bin/
 src/test/
 lib/test/
 node_modules/
+.eslintrc
+.babelrc
+.editorconfig

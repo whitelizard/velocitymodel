@@ -29,6 +29,6 @@ export default class VelocityModelAnimator {
 
   kill() {
     clearInterval(this.timer);
-    this.timer = null;
+    this.timer = undefined;
   }
 }

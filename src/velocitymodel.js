@@ -1,4 +1,4 @@
-import PIDController from 'node-pid-controller';
+import PIDController from './node-pid-controller';
 
 export default class VelocityModel {
 

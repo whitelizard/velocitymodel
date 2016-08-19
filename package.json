@@ -7,7 +7,8 @@
     "clean": "rimraf ./lib/*",
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel-node": "babel-node",
-    "build": "npm run clean&&babel src -d lib",
+    "build-pid-controller": "babel node_modules/node-pid-controller/lib -o lib/node-pid-controller.js",
+    "build": "npm run clean&&babel src -d lib&&npm run build-pid-controller",
     "lint": "eslint src --ext js --ext jsx",
     "prepublish": "npm run build",
     "docgen": "jsdox lib -o docs"

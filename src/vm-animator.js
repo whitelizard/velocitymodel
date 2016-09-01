@@ -19,6 +19,12 @@ export default class VelocityModelAnimator {
     }
   }
 
+  // TODO: Future --> Use requestAnimationFrame instead of setInterval, but need to handle dt ?!
+  // animate() {
+  //   this.animationFrameId = requestAnimationFrame(::this.animate);
+  //   this.render();
+  // }
+
   setTarget(value) {
     if (isNaN(value)) return;
     this.velocityModel.setTarget(value);

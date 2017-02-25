@@ -2,25 +2,34 @@ import PIDController from './node-pid-controller';
 
 export default class VelocityModel {
 
-  constructor(P, D, dt = 1, args) {
-    this.min = (args && args.min) || 0;
-    this.max = (args && args.max) || 100;
+  constructor({
+    P = 100,
+    D = 10,
+    dt = 0,
+    min = -Infinity,
+    max = Infinity,
+    start = 0,
+    circular = false,
+  }) {
+    this.dt = dt;
+    this.min = min;
+    this.max = max;
+    this.circular = circular;
     this.interval = this.max - this.min;
     this.halfInterval = this.interval / 2;
-    this.circular = (args && args.circular) || false;
     // this.maxVelocity = (args && args.maxVelocity) || 0.5; // TODO: ??
-    this.dt = dt;
     // this.dt2 = 0.5 * dt * dt;
     this.v = 0;
-    this.pos = 0; // (args && args.start) ||
+    this.pos = start;
     this.PID = new PIDController(P, 0, D, dt);
   }
 
-  update() {
+  update(deltaT) {
     // TODO: introduce optional friction somehow?
+    const dt = deltaT || this.dt;
     const force = this.PID.update(this.pos);
-    this.v += force * this.dt;
-    this.pos += this.v * this.dt;// + this.dt2*force;
+    this.v += force * dt;
+    this.pos += this.v * dt;// + this.dt2*force;
     if (this.circular) {
       if (!this.inside(this.PID.target)) {
         // if we are in the state of a target outside the interval,
@@ -68,5 +77,10 @@ export default class VelocityModel {
     } else {
       this.PID.setTarget(target);
     }
+  }
+
+  reset() {
+    this.v = 0;
+    this.PID.reset();
   }
 }

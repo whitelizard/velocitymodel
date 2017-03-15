@@ -1,8 +1,8 @@
 import { expect } from 'chai';
-import VelocityModel from '../velocitymodel';
+import VelocityModel from '../../lib/velocitymodel';
 import { Range } from 'immutable';
 
-const vm = new VelocityModel(1, 1, 1, { min: -10, max: 190, circular: true });
+const vm = new VelocityModel({ P: 1, D: 1, dt: 1, min: -10, max: 190, circular: true });
 vm.setTarget(180);
 expect(vm.circular).to.be.true;
 expect(vm.PID.target).to.equal(-20);

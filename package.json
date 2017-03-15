@@ -2,7 +2,7 @@
   "name": "velocitymodel",
   "version": "0.1.7",
   "description": "PD controlled velocity model with animation extension",
-  "main": "lib/index.js",
+  "main": "index.js",
   "scripts": {
     "clean": "rimraf ./lib/*",
     "test": "echo \"Error: no test specified\" && exit 1",

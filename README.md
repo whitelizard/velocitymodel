@@ -6,7 +6,7 @@ PD controlled velocity model with optional animation extension
 ```bash
 npm i -S velocitymodel
 ```
-
+Example usage:
 ```javascript
 import VelocityModel from 'velocitymodel/lib/velocitymodel';
 import ModelAnimator from 'velocitymodel/lib/modelanimator';

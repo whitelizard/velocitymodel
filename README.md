@@ -3,6 +3,7 @@ PD controlled velocity model with optional animation extension
 
 **Demo [here](http://codepen.io/whitelizard/pen/zNVLrM?editors=1010)**
 
+Install the module:
 ```bash
 npm i -S velocitymodel
 ```

@@ -4,16 +4,19 @@ export default class VelocityModel {
 
   constructor({
     P = 100,
+    I = 0,
     D = 10,
     dt = 0,
     min = -Infinity,
     max = Infinity,
     start = 0,
     circular = false,
+    maxV = Infinity,
   }) {
     this.dt = dt;
     this.min = min;
     this.max = max;
+    this.maxV = maxV;
     this.circular = circular;
     this.interval = this.max - this.min;
     this.halfInterval = this.interval / 2;
@@ -21,15 +24,18 @@ export default class VelocityModel {
     // this.dt2 = 0.5 * dt * dt;
     this.v = 0;
     this.pos = start;
-    this.PID = new PIDController(P, 0, D, dt);
+    this.PID = new PIDController(P, I, D, dt);
   }
 
   update(deltaT) {
     // TODO: introduce optional friction somehow?
     const dt = deltaT || this.dt;
     const force = this.PID.update(this.pos);
-    this.v += force * dt;
-    this.pos += this.v * dt;// + this.dt2*force;
+    this.v += force * dt;// + this.dt2*force;
+    if (Math.abs(this.v) > this.maxV) {
+      this.v = this.maxV * this.v / Math.abs(this.v);
+    }
+    this.pos += this.v * dt;
     if (this.circular) {
       if (!this.inside(this.PID.target)) {
         // if we are in the state of a target outside the interval,

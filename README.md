@@ -1,9 +1,11 @@
 # velocitymodel
 PD controlled velocity model with optional animation extension
 
-Demo [here](http://codepen.io/whitelizard/pen/zNVLrM?editors=1010)
+**Demo [here](http://codepen.io/whitelizard/pen/zNVLrM?editors=1010)**
 
-`npm i -S velocitymodel`
+```bash
+npm i -S velocitymodel
+```
 
 ```javascript
 import VelocityModel from 'velocitymodel/lib/velocitymodel';

@@ -21,7 +21,7 @@ export default class ModelAnimator {
   tick(time) {
     if (this.dt) {
       this.model.update();
-      this.visualUpdate(this.model.pos);
+      this.visualUpdate(this.model.pos, this.model.PID.target);
       if (this.isVModel) {
         if (Math.abs(this.model.v) < this.lowestSpeed
             && Math.abs(this.model.PID.lastError) < this.posAccuracy) {
@@ -34,7 +34,7 @@ export default class ModelAnimator {
       if (!this.lastTime) this.lastTime = time;
       this.model.update((time - this.lastTime) / 1000);
       this.lastTime = time;
-      this.visualUpdate(this.model.pos || undefined);
+      this.visualUpdate(this.model.pos, this.model.PID.target);
       if (this.isVModel) {
         if (Math.abs(this.model.v) > this.lowestSpeed
             || Math.abs(this.model.PID.lastError) > this.posAccuracy) {

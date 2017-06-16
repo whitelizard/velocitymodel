@@ -1,35 +1,17 @@
 {
   "parser": "babel-eslint",
-  "extends": "airbnb",
-
-  "settings": {
-    "ecmascript": 7
-  },
+  "extends": "airbnb-base",
 
   "rules": {
-    "new-cap": [2, {
-      "capIsNewExceptions": [
-        "WidthProvider",
-        "Seq",
-        "OrderedMap",
-        "List",
-        "Map",
-        "Seq",
-        "Set",
-        "Range",
-        "Immutable.Map",
-        "Immutable.Set",
-        "Immutable.List"
-      ]
-    }],
-
-    "import/no-unresolved": [0],
     "no-restricted-syntax": [0],
+    "no-mixed-operators": [0],
+    "no-underscore-dangle": [0],
+    "arrow-parens": [2, "as-needed"]
   },
 
   "parserOptions": {
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true
     }
-  }
+  },
 }

@@ -1,12 +1,9 @@
-
 export default class ModelAnimator {
-
   constructor(model, visualUpdate, dt = 0, lowestSpeed = 0.01, posAccuracy = 0.1) {
     this.model = model;
     this.dt = dt;
     this.isVModel = false;
-    if (typeof model.v !== 'undefined' &&
-        model.PID && typeof model.PID.lastError !== 'undefined') {
+    if (typeof model.v !== 'undefined' && model.PID && typeof model.PID.lastError !== 'undefined') {
       this.isVModel = true;
     }
     this.visualUpdate = visualUpdate;
@@ -23,8 +20,10 @@ export default class ModelAnimator {
       this.model.update();
       this.visualUpdate(this.model.pos, this.model.PID.target);
       if (this.isVModel) {
-        if (Math.abs(this.model.v) < this.lowestSpeed
-            && Math.abs(this.model.PID.lastError) < this.posAccuracy) {
+        if (
+          Math.abs(this.model.v) < this.lowestSpeed &&
+          Math.abs(this.model.PID.lastError) < this.posAccuracy
+        ) {
           clearInterval(this.intervalTimer);
           this.intervalTimer = undefined;
           this.reset();
@@ -36,8 +35,10 @@ export default class ModelAnimator {
       this.lastTime = time;
       this.visualUpdate(this.model.pos, this.model.PID.target);
       if (this.isVModel) {
-        if (Math.abs(this.model.v) > this.lowestSpeed
-            || Math.abs(this.model.PID.lastError) > this.posAccuracy) {
+        if (
+          Math.abs(this.model.v) > this.lowestSpeed ||
+          Math.abs(this.model.PID.lastError) > this.posAccuracy
+        ) {
           this.animationFrameId = requestAnimationFrame(this.tick);
         } else {
           this.animationFrameId = undefined;
@@ -56,10 +57,8 @@ export default class ModelAnimator {
       if (!this.intervalTimer) {
         this.intervalTimer = setInterval(this.tick, this.dt);
       }
-    } else {
-      if (!this.animationFrameId) {
-        this.animationFrameId = requestAnimationFrame(this.tick);
-      }
+    } else if (!this.animationFrameId) {
+      this.animationFrameId = requestAnimationFrame(this.tick);
     }
   }
 

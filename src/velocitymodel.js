@@ -1,7 +1,6 @@
 import PIDController from './node-pid-controller';
 
 export default class VelocityModel {
-
   constructor({
     P = 100,
     I = 0,
@@ -31,7 +30,7 @@ export default class VelocityModel {
     // TODO: introduce optional friction somehow?
     const dt = deltaT || this.dt;
     const force = this.PID.update(this.pos);
-    this.v += force * dt;// + this.dt2*force;
+    this.v += force * dt; // + this.dt2*force;
     if (Math.abs(this.v) > this.maxV) {
       this.v = this.maxV * this.v / Math.abs(this.v);
     }
@@ -69,9 +68,9 @@ export default class VelocityModel {
     if (this.circular) {
       let t = target;
       if (target > this.max) {
-        t = this.min + ((target - this.max) % this.interval);
+        t = this.min + (target - this.max) % this.interval;
       } else if (target < this.min) {
-        t = this.max - ((this.min - target) % this.interval);
+        t = this.max - (this.min - target) % this.interval;
       }
       const error = t - this.pos;
       const absError = Math.abs(error);

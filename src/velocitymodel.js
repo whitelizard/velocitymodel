@@ -65,6 +65,7 @@ export default class VelocityModel {
   }
 
   setTarget(target) {
+    if (isNaN(target)) return;
     if (this.circular) {
       let t = target;
       if (target > this.max) {
